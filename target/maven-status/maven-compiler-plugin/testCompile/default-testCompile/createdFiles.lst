@@ -1,0 +1,12 @@
+reports\ExpressionColumn.class
+tradePackage\TradeFromMarketsClass.class
+loginLogoutPackage\LoginClass.class
+reports\Xml_details.class
+CI\City_Index\Main.class
+CI\City_Index\AppTest.class
+common\CheckElement.class
+common\ConnectClass.class
+loginLogoutPackage\LogoutClass.class
+common\GetConfirmationTicket.class
+reports\Reporte.class
+common\ValueRetriever.class
