@@ -1,11 +1,14 @@
 reports\ExpressionColumn.class
+tradePackage\TradeAutorolloverClass.class
+common\CheckElement.class
+loginLogoutPackage\LogoutClass.class
+reports\Reporte.class
+tradePackage\NormalTradeClass.class
 tradePackage\TradeFromMarketsClass.class
+tradePackage\TradeOptionMarketsClass.class
 loginLogoutPackage\LoginClass.class
 reports\Xml_details.class
 CI\City_Index\Main.class
-common\CheckElement.class
 common\ConnectClass.class
-loginLogoutPackage\LogoutClass.class
 common\GetConfirmationTicket.class
-reports\Reporte.class
 common\ValueRetriever.class
