@@ -9,19 +9,20 @@ import com.gorillalogic.monkeytalk.java.api.Application;
 import com.gorillalogic.monkeytalk.java.error.MonkeyTalkFailure;
 import com.gorillalogic.monkeytalk.java.utils.Mods;
 
+import common.CheckElement;
 import common.ConnectClass;
 import common.GetConfirmationTicket;
 import common.ValueRetriever;
 import fit.ColumnFixture;
 
+//Test case CIPH-9: Verify the different ways to create a trade.
 public class TradeFromMarketsClass extends ColumnFixture{
 
 	public String tradeFromMarkets() throws MonkeyTalkFailure
 	{
 		Application app=new ConnectClass().connect();
-		String resultado=null;
-		String msg=null;
-		  
+		String results=null;
+		
 		try
 		{
 			app.tabBar().select("Markets");
@@ -33,39 +34,51 @@ public class TradeFromMarketsClass extends ColumnFixture{
 			app.button("Sell").tap();
 			app.button("Trade").tap(new Mods.Builder().thinktime(5000).build());
 
+			CheckElement element=new CheckElement();
+			results= element.checkLabel(app, "Trade");
+			results= element.checkButton(app, "Calculate Margin");
+			results= element.checkButton(app, "Trade");
+			results= element.checkLabel(app, "Add Stop / Limit");
+			results= element.checkNotLabel(app, "Bet Per");
+			
+			
 			//Get trade confirmation ticket depending on iPhone used
 			String label=new GetConfirmationTicket().getConfirmationTicket(app);
 			
 			app.button("OK").tap(new Mods.Builder().thinktime(5000).build());
+			
+			if(results==null){
+				results="";
+			}
+			else
+			{
+				results=". Labels not found:" + results.substring(5);
+			}
+			
 			if (label==null)
 			{
-				//resultado=TestLinkAPIResults.TEST_FAILED;
-				msg=label;
-				return label;
+				return "The label was not found"+results;
 			}
 			else if((!(label.contains("Trade Confirmation") && label.contains("Direction:  Sell")) || (label==null)))
 			{
-				//resultado=TestLinkAPIResults.TEST_FAILED;
-				msg=label;
-				return label;
+				return label+results;
 			}
 				else
 				{
-					//resultado=TestLinkAPIResults.TEST_PASSED;
-					return "Pass";
+					return "Pass"+results;
 				}
 		}
 		catch(MonkeyTalkFailure e)
 		{
-			//resultado=TestLinkAPIResults.TEST_FAILED;
-			msg=e.getMessage();
+			if(results==null){
+				results="";
+			}
+			else
+			{
+				results=". Labels not found:" + results.substring(5);
+			}
 			String failure=e.toString();
-			return failure;
+			return failure+results;
 		}
-		 finally
-		 {
-			 
-			 //TestClass.updateTestLinkResult(PROJECTNAME, TESTPLANNAME, "CIiPad-87", BUILDNAME, msg, resultado);  
-		 }
 	}
 }

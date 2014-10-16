@@ -41,7 +41,7 @@ public class ValueRetriever {
 	
 	//get limit price in Stop&Limit
 	public String getLimitPrice(Application app){
-		String limitprice=app.label("#18").get();
+		String limitprice=app.label("#19").get();
 	
 		limitprice=limitprice.substring(2);
 		if (limitprice.contains(","))

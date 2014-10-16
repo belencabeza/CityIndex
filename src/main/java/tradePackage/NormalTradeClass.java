@@ -12,17 +12,14 @@ import common.GetConfirmationTicket;
 import common.ValueRetriever;
 import fit.ColumnFixture;
 
+//CIPH-10: Create Trade
 public class NormalTradeClass extends ColumnFixture{
 	
 	String results=null;
-	String results2;
-	String resultado=null;
-	  String msg=null;
+	
 	public String normalTrade() throws MonkeyTalkFailure{
 		
 		Application app=new ConnectClass().connect();
-		String label = null;
-		String failure=null;
 		try 
 		{
 			app.tabBar().select("Markets");
@@ -33,13 +30,17 @@ public class NormalTradeClass extends ColumnFixture{
 			
 			CheckElement element=new CheckElement();
 			results= element.checkLabel(app, "Trade");
+			results= element.checkButton(app, "Calculate Margin");
+			results= element.checkButton(app, "Trade");
+			results= element.checkLabel(app, "Add Stop / Limit");
+			results= element.checkNotLabel(app, "Bet Per");
 			
 			app.input("Quantity").enterText(quantity);
 			app.button("Sell").tap();
 			app.button("Trade").tap();
 			
 			//Get trade confirmation ticket depending on iPhone used
-			label=new GetConfirmationTicket().getConfirmationTicket(app);
+			String label=new GetConfirmationTicket().getConfirmationTicket(app);
 			
 			app.button("OK").tap(new Mods.Builder().thinktime(5000).build());
 		
@@ -53,16 +54,15 @@ public class NormalTradeClass extends ColumnFixture{
 			
 			if (label==null)
 			{
-				label=label+results;
+				return "The label was not found"+results;
 			}
 			else if((!(label.contains("Trade Confirmation") && label.contains("Direction:  Sell")) || (label==null)))
 			{
-				label=label+results;
+				return label+results;
 			}
 				else
 				{
-					label="Pass"+results;
-					msg="bien";
+					return "Pass"+results;
 				}
 		}
 		catch(MonkeyTalkFailure e)
@@ -74,12 +74,9 @@ public class NormalTradeClass extends ColumnFixture{
 			{
 				results=". Labels not found:" + results.substring(5);
 			}
-			failure=e.toString();
-			   msg = e.getMessage();
-			label=failure+results;
-		}
-		return label; 
-			 
+			String failure=e.toString();
+			return failure+results;
+		}			 
 		
 	}
 

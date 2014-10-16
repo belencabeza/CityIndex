@@ -1,3 +1,4 @@
+email\SendEmail$1.class
 reports\ExpressionColumn.class
 tradePackage\TradeAutorolloverClass.class
 common\CheckElement.class
@@ -8,7 +9,9 @@ tradePackage\TradeFromMarketsClass.class
 tradePackage\TradeOptionMarketsClass.class
 loginLogoutPackage\LoginClass.class
 reports\Xml_details.class
+email\SendEmail.class
 CI\City_Index\Main.class
+tradePackage\TradeStopLimitClass.class
 common\ConnectClass.class
 common\GetConfirmationTicket.class
 common\ValueRetriever.class

@@ -24,5 +24,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/mcabeza/workspace3/City_Index/fitnesse-standalone.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mcabeza/workspace3/City_Index/monkeytalk-java-2.0.5-all-in-one.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

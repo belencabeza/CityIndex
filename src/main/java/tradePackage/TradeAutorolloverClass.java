@@ -10,13 +10,12 @@ import common.GetConfirmationTicket;
 import common.ValueRetriever;
 import fit.ColumnFixture;
 
+//CIPH-145:Create a Trade with AutoRollover
 public class TradeAutorolloverClass extends ColumnFixture{
 	
 	 public String tradeAutorollover() throws MonkeyTalkFailure{
 		
 		 Application app=new ConnectClass().connect();
-		 String resultado=null;
-		  String msg=null;
 		 try{
 			app.tabBar().select("Markets");
 			app.button("Search").tap();
@@ -37,12 +36,10 @@ public class TradeAutorolloverClass extends ColumnFixture{
 			app.button("OK").tap(new Mods.Builder().thinktime(5000).build());
 			if (label==null)
 			{
-				   msg = label;
 				return label;
 			}
 			else if((!(label.contains("Trade Confirmation") && label.contains("Direction:  Sell")) || (label==null)))
 			{
-				   msg = label;
 				return label;
 			}
 				
@@ -51,18 +48,25 @@ public class TradeAutorolloverClass extends ColumnFixture{
 			String prueba=app.toggle("205").get();
 			if(prueba=="off")
 			{
-				   msg = prueba;
+				return prueba;
+			}
+			
+			app.toggle("205").off();
+			app.label("Back").tap(new Mods.Builder().thinktime(5000).build());
+			app.label(title).tap(new Mods.Builder().thinktime(5000).build());
+			prueba=app.toggle("205").get();
+			if(prueba=="on")
+			{
 				return prueba;
 			}
 			else
 			{
 				return "Pass";
 			}
+			
 		 }
 		catch(MonkeyTalkFailure e)
 		{
-			   //msg = e.getMessage();
-			   e.printStackTrace();
 			String failure=e.toString();
 			return failure;
 		}

@@ -34,5 +34,19 @@ public class CheckElement{
 				return results;
 			}
 		}
+		
+		public String checkNotLabel(Application app, String label){
+			try 
+			{
+				app.label(label).verifyNot();
+				return results;
+				
+			}
+			catch(MonkeyTalkFailure ex)
+			{
+				results= results + ", " + label;
+				return results;
+			}
+		}
 
 }

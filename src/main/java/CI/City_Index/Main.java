@@ -26,6 +26,7 @@ import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import email.SendEmail;
 import reports.Reporte;
 //import testlink.CreateBuild;
 //import testlink.api.java.client.TestLinkAPIException;
@@ -71,6 +72,8 @@ public class Main{
 			
 			Reporte reporte=new Reporte();
 			reporte.reporte("C:\\resultado.xml");
+			
+			new SendEmail().send();
 	 
 			conn.disconnect();
 	 

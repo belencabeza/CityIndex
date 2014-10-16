@@ -13,7 +13,7 @@ public class ConnectClass extends SetUpFixture{
 	public Application app;
 	
 	public Application connect(){
-	mt = new MonkeyTalkDriver(new File("."), "iOS", "192.168.7.73");
+	mt = new MonkeyTalkDriver(new File("."), "iOS", "192.168.7.78");
 	mt.setThinktime(500);
 	mt.setTimeout(5000);
 	app = mt.app();

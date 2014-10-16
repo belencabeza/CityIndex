@@ -10,13 +10,12 @@ import common.GetConfirmationTicket;
 import common.ValueRetriever;
 import fit.ColumnFixture;
 
+//CIPH-398:Trade in Options Markets.
 public class TradeOptionMarketsClass extends ColumnFixture{
 	
 	public String tradeOptionMarkets() throws MonkeyTalkFailure
 	{
 		Application app=new ConnectClass().connect();
-		String resultado=null;
-		  String msg=null;
 		  
 		try
 		{
@@ -27,7 +26,6 @@ public class TradeOptionMarketsClass extends ColumnFixture{
 			app.table("Empty list").select("All Options");
 			
 			app.button("Trade(3)").tap(new Mods.Builder().thinktime(5000).build());
-			//app.button("Trade(2)").tap(new Mods.Builder().thinktime(5000).build());
 			app.view("#56").verify();
 			app.button("Sell").tap();
 			
@@ -43,12 +41,12 @@ public class TradeOptionMarketsClass extends ColumnFixture{
 			app.button("OK").tap(new Mods.Builder().thinktime(5000).build());
 			if (label==null)
 			{
-				msg=label;
-				return label;
+				app.label("OK").tap(new Mods.Builder().thinktime(5000).build());
+				return "The label was not found";
 			}
 			else if((!(label.contains("Trade Confirmation") && label.contains("Direction:  Sell")) || (label==null)))
 			{
-				msg=label;
+				app.label("OK").tap(new Mods.Builder().thinktime(5000).build());
 				return label;
 			}
 				else
@@ -58,7 +56,6 @@ public class TradeOptionMarketsClass extends ColumnFixture{
 		}
 		catch(MonkeyTalkFailure e)
 		{
-			msg=e.getMessage();
 			String failure=e.toString();
 			return failure;
 		}
