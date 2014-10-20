@@ -5,6 +5,7 @@ common\CheckElement.class
 loginLogoutPackage\LogoutClass.class
 reports\Reporte.class
 tradePackage\NormalTradeClass.class
+tradePackage\CloseTradeClass.class
 tradePackage\TradeFromMarketsClass.class
 tradePackage\TradeOptionMarketsClass.class
 loginLogoutPackage\LoginClass.class

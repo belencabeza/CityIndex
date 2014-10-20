@@ -73,7 +73,7 @@ public class Main{
 			Reporte reporte=new Reporte();
 			reporte.reporte("C:\\resultado.xml");
 			
-			new SendEmail().send();
+			//new SendEmail().send();
 	 
 			conn.disconnect();
 	 

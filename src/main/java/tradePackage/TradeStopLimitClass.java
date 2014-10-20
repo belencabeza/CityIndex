@@ -10,6 +10,7 @@ import common.GetConfirmationTicket;
 import common.ValueRetriever;
 import fit.ColumnFixture;
 
+//CIPH-289:Create a Closing order
 public class TradeStopLimitClass extends ColumnFixture{
 	String results=null;
 	
@@ -27,10 +28,12 @@ public class TradeStopLimitClass extends ColumnFixture{
 			app.button("Sell").tap();
 			app.image("plusButtonIcon").tap();
 			app.label("Stop / Limits").verify();
-			app.input("1").enterText(new ValueRetriever().getStopPrice(app));
 			app.input("2").enterText(quantity);
-			app.input("3").enterText(new ValueRetriever().getLimitPrice(app));
+			String stop= new ValueRetriever().getStopPrice(app);
+			app.input("1").enterText(stop);
 			app.input("4").enterText(quantity);
+			String limit= new ValueRetriever().getLimitPrice(app);
+			app.input("3").enterText(limit);
 			app.button("209").tap();
 			CheckElement element=new CheckElement();
 			results= element.checkLabel(app, "Order Stop Limit 1");
@@ -41,9 +44,21 @@ public class TradeStopLimitClass extends ColumnFixture{
 			
 			app.button("OK").tap(new Mods.Builder().thinktime(5000).build());
 			
-			app.label("Direction").tap();
-			app.button("Closing Orders").tap();
-			app.button("Delete").verify();
+			if (label==null)
+			{
+				app.label("OK").tap(new Mods.Builder().thinktime(5000).build());
+				return "The label was not found";
+			}
+			else if((!(label.contains("Trade Confirmation") && label.contains("Direction:  Sell")) || (label==null)))
+			{
+				app.label("OK").tap(new Mods.Builder().thinktime(5000).build());
+				return label;
+			}
+
+			app.tabBar().select("Positions");
+			app.label("Direction").tap(new Mods.Builder().thinktime(5000).build());
+			app.button("Closing Orders").tap(new Mods.Builder().thinktime(5000).build());
+			app.button("Delete").verify(new Mods.Builder().thinktime(5000).build());
 			
 			if(results==null){
 				results="";
@@ -52,20 +67,7 @@ public class TradeStopLimitClass extends ColumnFixture{
 			{
 				results=". Labels not found:" + results.substring(5);
 			}
-			
-			if (label==null)
-			{
-				return "The label was not found"+results;
-			}
-			else if((!(label.contains("Trade Confirmation") && label.contains("Direction:  Sell")) || (label==null)))
-			{
-				return label+results;
-			}
-				else
-				{
-					return "Pass"+results;
-				}
-
+			return "Pass";
 		}
 		catch(MonkeyTalkFailure e)
 		{

@@ -28,13 +28,13 @@ public class ValueRetriever {
 	public String getStopPrice(Application app){
 		String stopprice=app.label("#10").get();
 	
-		stopprice=stopprice.substring(2);
+		stopprice=stopprice.substring(2, stopprice.indexOf("."));
 		if (stopprice.contains(","))
 		{
 			stopprice=stopprice.replaceAll( "[^\\d]", "" );
 		}
 		BigDecimal stopentero= new BigDecimal(new Float(stopprice));
-		stopentero=stopentero.add(new BigDecimal(1));
+		stopentero=stopentero.add(new BigDecimal(10));
 		stopprice=stopentero.toString();
 		return stopprice;
 	}
@@ -43,19 +43,19 @@ public class ValueRetriever {
 	public String getLimitPrice(Application app){
 		String limitprice=app.label("#19").get();
 	
-		limitprice=limitprice.substring(2);
+		limitprice=limitprice.substring(2, limitprice.indexOf("."));
 		if (limitprice.contains(","))
 		{
 			limitprice=limitprice.replaceAll( "[^\\d]", "" );
 		}
 		BigDecimal limitentero= new BigDecimal(new Float(limitprice));
-		if (limitentero.doubleValue()<=1)
+		if (limitentero.longValue()<=1)
 		{
 			limitentero=limitentero.subtract(new BigDecimal(0.1));
 		}
 		else
 		{
-			limitentero=limitentero.subtract(new BigDecimal(1));
+			limitentero=limitentero.subtract(new BigDecimal(10));
 		}
 		limitprice=limitentero.toString();
 		return limitprice;

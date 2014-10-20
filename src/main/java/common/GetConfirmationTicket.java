@@ -33,5 +33,19 @@ public class GetConfirmationTicket {
 		}
 		return label;
 	}
+	
+	public String getConfirmationTicketClose(Application app){
+		String resolution=app.device().get("resolution");
+		String label;
+		if (resolution.equals("640x960"))
+		{
+			label=app.label("#22").get(new Mods.Builder().thinktime(5000).build());
+		}
+		else
+		{
+			label=app.label("#15").get(new Mods.Builder().thinktime(5000).build());
+		}
+		return label;
+	}
 
 }
