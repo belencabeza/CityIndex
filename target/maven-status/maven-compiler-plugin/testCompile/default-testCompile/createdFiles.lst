@@ -1,12 +1,15 @@
 email\SendEmail$1.class
 reports\ExpressionColumn.class
+tradePackage\EditCloseTradeClass.class
 tradePackage\TradeAutorolloverClass.class
 CI\City_Index\AppTest.class
 common\CheckElement.class
 loginLogoutPackage\LogoutClass.class
 reports\Reporte.class
+tradePackage\DeleteClosingOrderClass.class
 tradePackage\NormalTradeClass.class
 tradePackage\CloseTradeClass.class
+tradePackage\EditClosingOrderClass.class
 tradePackage\TradeFromMarketsClass.class
 tradePackage\TradeOptionMarketsClass.class
 loginLogoutPackage\LoginClass.class

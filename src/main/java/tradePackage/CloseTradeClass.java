@@ -15,7 +15,7 @@ public class CloseTradeClass extends ColumnFixture{
 		Application app=new ConnectClass().connect();
 		try
 		{
-			String trade=new NormalTradeClass().normalTrade();
+			new NormalTradeClass().normalTrade();
 			app.label("Back").tap();
 			app.label("Back").tap();
 			app.tabBar().select("Positions");

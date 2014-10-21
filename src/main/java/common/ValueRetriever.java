@@ -60,5 +60,68 @@ public class ValueRetriever {
 		limitprice=limitentero.toString();
 		return limitprice;
 	}
+	
+	//get stop quantity value in Stop&Limit
+	public String getStopQuantityInput(Application app){
+		String stopquantity=app.input("#2").get("value");
+		
+		long stopquantityentero= Long.parseLong(stopquantity);
+		stopquantity=Long.toString(stopquantityentero-2);
+		return stopquantity;
+	}
+	
+	//get stop price value in Stop&Limit
+	public String getStopPriceInput(Application app){
+		String stopprice=app.input("#1").get("value");
+		
+		if (stopprice.indexOf(".")>0)
+		{
+		stopprice=stopprice.substring(0, stopprice.indexOf("."));
+		}
+		if (stopprice.contains(","))
+		{
+			stopprice=stopprice.replaceAll( "[^\\d]", "" );
+		}
+		BigDecimal stopentero= new BigDecimal(new Float(stopprice));
+		stopentero=stopentero.add(new BigDecimal(10));
+		stopprice=stopentero.toString();
+		return stopprice;
+	}	
+	
+	//get limit quantity value in Stop&Limit
+	public String getLimitQuantityInput(Application app){
+		String limitquantity=app.input("#4").get("value");
+		
+		long limitquantityentero= Long.parseLong(limitquantity);
+		limitquantity=Long.toString(limitquantityentero-2);
+		return limitquantity;
+	}
+	
+	//get limit price value in Stop&Limit
+	public String getLimitPriceInput(Application app){
+		String limitprice=app.input("#3").get("value");
+	
+		if (limitprice.indexOf(".")>0)
+		{
+			limitprice=limitprice.substring(0, limitprice.indexOf("."));
+		}
+		
+		if (limitprice.contains(","))
+		{
+			limitprice=limitprice.replaceAll( "[^\\d]", "" );
+		}
+		BigDecimal limitentero= new BigDecimal(new Float(limitprice));
+		if (limitentero.longValue()<=1)
+		{
+			limitentero=limitentero.subtract(new BigDecimal(0.1));
+		}
+		else
+		{
+			limitentero=limitentero.subtract(new BigDecimal(10));
+		}
+		limitprice=limitentero.toString();
+		return limitprice;
+	}
+
 
 }
