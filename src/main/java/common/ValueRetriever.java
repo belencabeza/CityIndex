@@ -3,8 +3,11 @@ package common;
 import java.math.BigDecimal;
 
 import com.gorillalogic.monkeytalk.java.api.Application;
+import com.gorillalogic.monkeytalk.java.utils.Mods;
 
 public class ValueRetriever {
+	
+	//get quantity in trade
 	public String getQuantityTrade(Application app){
 		String quantity=app.label("#11").get();
 		if (quantity.contains("."))
@@ -121,6 +124,52 @@ public class ValueRetriever {
 		}
 		limitprice=limitentero.toString();
 		return limitprice;
+	}
+	
+	//get quantity in order
+	public String getQuantityOrder(Application app){
+		String quantity=app.label("#9").get("value", new Mods.Builder().thinktime(5000).build());
+		if (quantity.contains("."))
+		{
+			quantity=quantity.substring(3, quantity.indexOf("."));
+		}
+		else
+		{
+			quantity=quantity.substring(3);
+		}
+		if (quantity.contains(","))
+		{
+			quantity=quantity.replaceAll( "[^\\d]", "" );
+		}
+		long quantityentero= Long.parseLong(quantity);
+		quantity=Long.toString(quantityentero+10);
+		return quantity;
+	}
+	
+	//get price in order
+	public String getPriceOrder(Application app){
+		String price=app.label("#13").get("value");
+		
+		if (price.indexOf(".")>0)
+		{
+			price=price.substring(0, price.indexOf("."));
+		}
+		
+		if (price.contains(","))
+		{
+			price=price.replaceAll( "[^\\d]", "" );
+		}
+		BigDecimal priceentero= new BigDecimal(new Float(price));
+		if (priceentero.longValue()<=1)
+		{
+			priceentero=priceentero.subtract(new BigDecimal(0.1));
+		}
+		else
+		{
+			priceentero=priceentero.subtract(new BigDecimal(10));
+		}
+		price=priceentero.toString();
+		return price;
 	}
 
 

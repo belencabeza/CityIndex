@@ -1,6 +1,7 @@
 email\SendEmail$1.class
 reports\ExpressionColumn.class
 tradePackage\EditCloseTradeClass.class
+tradePackage\CalculateMarginClass.class
 tradePackage\TradeAutorolloverClass.class
 common\CheckElement.class
 loginLogoutPackage\LogoutClass.class
@@ -14,6 +15,7 @@ tradePackage\TradeOptionMarketsClass.class
 loginLogoutPackage\LoginClass.class
 reports\Xml_details.class
 email\SendEmail.class
+orderPackage\EntryNewOrderClass.class
 CI\City_Index\Main.class
 tradePackage\TradeStopLimitClass.class
 common\ConnectClass.class
