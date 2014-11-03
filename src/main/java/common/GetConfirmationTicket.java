@@ -43,7 +43,7 @@ public class GetConfirmationTicket {
 		}
 		else
 		{
-			label=app.label("#15").get(new Mods.Builder().thinktime(5000).build());
+			label=app.label("#23").get(new Mods.Builder().thinktime(5000).build());
 		}
 		return label;
 	}
@@ -57,7 +57,7 @@ public class GetConfirmationTicket {
 		}
 		else
 		{
-			label=app.label("#15").get(new Mods.Builder().thinktime(5000).build());
+			label=app.label("#25").get(new Mods.Builder().thinktime(5000).build());
 		}
 		return label;
 	}
@@ -71,7 +71,7 @@ public class GetConfirmationTicket {
 		}
 		else
 		{
-			label=app.label("#15").get(new Mods.Builder().thinktime(5000).build());
+			label=app.label("#32").get(new Mods.Builder().thinktime(5000).build());
 		}
 		return label;
 	}
@@ -85,21 +85,62 @@ public class GetConfirmationTicket {
 		}
 		else
 		{
-			label=app.label("#15").get(new Mods.Builder().thinktime(5000).build());
+			label=app.label("#13").get(new Mods.Builder().thinktime(5000).build());
 		}
 		return label;
 	}
 	
-	public String getConfirmationOrder(Application app){
+	public String getConfirmationOrder(Application app, String goodUntil, String qty){
 		String resolution=app.device().get("resolution");
 		String label;
 		if (resolution.equals("640x960"))
 		{
-			label=app.label("#23").get(new Mods.Builder().thinktime(5000).build());
+			if (goodUntil.contains("Time"))
+			{
+				if (qty.contains(">"))
+				{
+					label=app.label("#22").get(new Mods.Builder().thinktime(5000).build());
+				}
+				else
+				{
+					label=app.label("#23").get(new Mods.Builder().thinktime(5000).build());
+				}
+			}
+			else
+			{
+				if (qty.contains(">"))
+				{
+					label=app.label("#23").get(new Mods.Builder().thinktime(5000).build());
+				}
+				else
+				{
+					label=app.label("#24").get(new Mods.Builder().thinktime(5000).build());
+				}
+			}
 		}
 		else
 		{
-			label=app.label("#15").get(new Mods.Builder().thinktime(5000).build());
+			if (goodUntil.contains("Time"))
+			{
+				label=app.label("#25").get(new Mods.Builder().thinktime(5000).build());
+			}
+			else
+			{
+				label=app.label("#24").get(new Mods.Builder().thinktime(5000).build());
+			}
+		}
+		return label;
+	}
+	public String getDeleteOrder(Application app){
+		String resolution=app.device().get("resolution");
+		String label;
+		if (resolution.equals("640x960"))
+		{
+			label=app.label("#63").get(new Mods.Builder().thinktime(5000).build());
+		}
+		else
+		{
+			label=app.label("#62").get(new Mods.Builder().thinktime(5000).build());
 		}
 		return label;
 	}

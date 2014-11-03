@@ -27,7 +27,7 @@ public class TradeOptionMarketsClass extends ColumnFixture{
 			
 			app.button("Trade(3)").tap(new Mods.Builder().thinktime(5000).build());
 			app.view("#56").verify();
-			app.button("Sell").tap();
+			app.button("Sell").tap(new Mods.Builder().thinktime(5000).build());
 			
 			String quantity=new ValueRetriever().getQuantityTrade(app);
 			app.input("Quantity").enterText(quantity);
@@ -36,17 +36,14 @@ public class TradeOptionMarketsClass extends ColumnFixture{
 			
 			//Get trade confirmation ticket depending on iPhone used
 			String label=new GetConfirmationTicket().getConfirmationTicket(app);
-			
-			
-			app.button("OK").tap(new Mods.Builder().thinktime(5000).build());
 			if (label==null)
 			{
-				app.label("OK").tap(new Mods.Builder().thinktime(5000).build());
+				app.label("Cancel Trade").tap(new Mods.Builder().thinktime(5000).build());
 				return "The label was not found";
 			}
 			else if((!(label.contains("Trade Confirmation") && label.contains("Direction:  Sell")) || (label==null)))
 			{
-				app.label("OK").tap(new Mods.Builder().thinktime(5000).build());
+				app.label("Cancel Trade").tap(new Mods.Builder().thinktime(5000).build());
 				return label;
 			}
 				else

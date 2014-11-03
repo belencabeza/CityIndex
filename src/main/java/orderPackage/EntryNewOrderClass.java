@@ -10,6 +10,9 @@ import common.GetConfirmationTicket;
 import common.ValueRetriever;
 import fit.ColumnFixture;
 
+//CIPH-25 : Entry New Order
+//CIPH-31 : Day End
+//CIPH-32 : Time
 public class EntryNewOrderClass extends ColumnFixture {
 	 public String goodUntil;
 	 String results=null;
@@ -38,8 +41,15 @@ public class EntryNewOrderClass extends ColumnFixture {
 			app.input("1").enterText(quantity);
 			app.input("2").enterText(price);
 			app.label(goodUntil).tap();
+			if (goodUntil.contains("Time"))
+			{
+				String time=new ValueRetriever().getTime(app);
+				app.datePicker("_dpGoodUntil").enterDateAndTime(time);
+				app.label("Set Time").tap();
+			}
+			String qty=new ValueRetriever().getQty(app);
 			app.button("211").tap();
-			String label= new GetConfirmationTicket().getConfirmationOrder(app);
+			String label= new GetConfirmationTicket().getConfirmationOrder(app, goodUntil, qty);
 			app.button("OK").tap(new Mods.Builder().thinktime(5000).build());
 			
 			if(results==null){
@@ -60,7 +70,27 @@ public class EntryNewOrderClass extends ColumnFixture {
 			}
 				else
 				{
-					return "Pass"+results;
+					app.tabBar().select("Positions");
+					app.label("Orders").tap();
+					app.table("Empty list").selectIndex(1, new Mods.Builder().thinktime(5000).build());
+					if (goodUntil.contains("Day End"))
+					{
+						app.view("#68").verify();
+						app.label("Back").tap();
+						return "Pass"+results;
+					}
+					else if(goodUntil.contains("Cancelled"))
+					{
+						app.view("#67").verify();
+						app.label("Back").tap();
+						return "Pass"+results;
+					}
+					else
+					{
+						app.view("#69").verify();
+						app.label("Back").tap();
+						return "Pass"+results;
+					}
 				}
 			
 			

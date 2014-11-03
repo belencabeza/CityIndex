@@ -12,8 +12,7 @@ public class LoginClass extends ColumnFixture {
 	 public String password;
 	
 	 public String login() {
-		Application app=new ConnectClass().connect();
-				  
+		Application app=new ConnectClass().connect();	  
 		  try
 		  {
 			  app.label("Markets").verify();

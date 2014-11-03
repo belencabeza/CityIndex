@@ -129,6 +129,13 @@ public class ValueRetriever {
 	//get quantity in order
 	public String getQuantityOrder(Application app){
 		String quantity=app.label("#9").get("value", new Mods.Builder().thinktime(5000).build());
+		int num=11;
+		while(!quantity.contains(">"))
+		{
+			quantity=app.label("#"+num).get();
+			num=num+1;
+		}
+		
 		if (quantity.contains("."))
 		{
 			quantity=quantity.substring(3, quantity.indexOf("."));
@@ -149,7 +156,12 @@ public class ValueRetriever {
 	//get price in order
 	public String getPriceOrder(Application app){
 		String price=app.label("#13").get("value");
-		
+		int num=15;
+		while(!price.contains(">"))
+		{
+			price=app.label("#"+num).get();
+			num=num+1;
+		}
 		if (price.indexOf(".")>0)
 		{
 			price=price.substring(0, price.indexOf("."));
@@ -170,6 +182,22 @@ public class ValueRetriever {
 		}
 		price=priceentero.toString();
 		return price;
+	}
+	
+	public String getTime(Application app){
+		String time=app.datePicker("_dpGoodUntil").get("value");
+		String timeDay=time.substring(8, 10);
+		long timeNum= Long.parseLong(timeDay);
+		timeNum=timeNum+1;
+		timeDay=Long.toString(timeNum);
+		time=time.substring(0,8)+timeDay+time.substring(10);
+		return time;
+	}
+	
+	public String getQty(Application app){
+		String qty=app.label("#9").get("value", new Mods.Builder().thinktime(5000).build());
+		return qty;
+		
 	}
 
 
