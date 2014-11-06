@@ -10,12 +10,16 @@ import fit.ColumnFixture;
 
 //CIPH-293: Delete a closing order
 public class DeleteClosingOrderClass extends ColumnFixture{
+	public String cfdMarket;
+	
 	public String deleteClosingOrder() throws MonkeyTalkFailure
 	{
 		Application app=new ConnectClass().connect();
 		try
 		{
-			new TradeStopLimitClass().tradeStopLimit();
+			TradeStopLimitClass trade=new TradeStopLimitClass();
+			trade.cfdMarket=cfdMarket;
+			trade.tradeStopLimit();
 			app.label("Delete").tap();
 			String label= new GetConfirmationTicket().getConfirmationDelete(app);
 			if (label==null)

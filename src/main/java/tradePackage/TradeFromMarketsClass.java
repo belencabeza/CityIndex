@@ -17,7 +17,8 @@ import fit.ColumnFixture;
 
 //Test case CIPH-9: Verify the different ways to create a trade.
 public class TradeFromMarketsClass extends ColumnFixture{
-
+	public String cfdMarket;
+	
 	public String tradeFromMarkets() throws MonkeyTalkFailure
 	{
 		Application app=new ConnectClass().connect();
@@ -26,7 +27,9 @@ public class TradeFromMarketsClass extends ColumnFixture{
 		try
 		{
 			app.tabBar().select("Markets");
-			app.button("#7").tap(new Mods.Builder().thinktime(5000).build());
+			app.button("Search").tap();
+			app.input("_searchField").enterText(cfdMarket, "enter", new Mods.Builder().thinktime(5000).build());
+			app.label("Trade").tap(new Mods.Builder().thinktime(5000).build());
 			
 			String quantity=new ValueRetriever().getQuantityTrade(app);
 			

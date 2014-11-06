@@ -21,8 +21,6 @@ public class DeleteOrderClass extends ColumnFixture {
 			 order.cfdMarket=cfdMarket;
 			 order.goodUntil=goodUntil;
 			 order.entryNewOrder();
-			 app.tabBar().select("Positions");
-			 app.label("Orders").tap(new Mods.Builder().thinktime(5000).build());
 			 app.label("Delete").tap(new Mods.Builder().thinktime(5000).build());
 			 app.label("Are you sure you want to delete this order?").verify();
 			 CheckElement element=new CheckElement();

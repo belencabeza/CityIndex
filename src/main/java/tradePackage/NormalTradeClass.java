@@ -16,14 +16,16 @@ import fit.ColumnFixture;
 public class NormalTradeClass extends ColumnFixture{
 	
 	String results=null;
-	
+	public String cfdMarket;
 	public String normalTrade() throws MonkeyTalkFailure{
 		
 		Application app=new ConnectClass().connect();
 		try 
 		{
 			app.tabBar().select("Markets");
-			app.label("Wall Street CFD").tap();
+			app.button("Search").tap();
+			app.input("_searchField").enterText(cfdMarket, "enter", new Mods.Builder().thinktime(5000).build());
+			app.label(cfdMarket+"(2)").tap(new Mods.Builder().thinktime(5000).build());
 			app.button("Trade").tap(new Mods.Builder().thinktime(5000).build());
 			
 			String quantity=new ValueRetriever().getQuantityTrade(app);

@@ -12,6 +12,7 @@ reports\Xml_details.class
 email\SendEmail.class
 orderPackage\OrderOptionMarketsClass.class
 CI\City_Index\Main.class
+orderPackage\DeleteOrderFromEditClass.class
 common\ConnectClass.class
 reports\ExpressionColumn.class
 tradePackage\EditCloseTradeClass.class
@@ -20,6 +21,7 @@ CI\City_Index\AppTest.class
 loginLogoutPackage\LogoutClass.class
 tradePackage\DeleteClosingOrderClass.class
 tradePackage\EditClosingOrderClass.class
+orderPackage\EditOrderClass.class
 orderPackage\EntryNewOrderClass.class
 tradePackage\TradeStopLimitClass.class
 common\GetConfirmationTicket.class

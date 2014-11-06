@@ -39,7 +39,7 @@ public class GetConfirmationTicket {
 		String label;
 		if (resolution.equals("640x960"))
 		{
-			label=app.label("#22").get(new Mods.Builder().thinktime(5000).build());
+			label=app.label("#22").get(new Mods.Builder().thinktime(10000).build());
 		}
 		else
 		{
@@ -97,25 +97,17 @@ public class GetConfirmationTicket {
 		{
 			if (goodUntil.contains("Time"))
 			{
-				if (qty.contains(">"))
-				{
-					label=app.label("#22").get(new Mods.Builder().thinktime(5000).build());
-				}
-				else
-				{
-					label=app.label("#23").get(new Mods.Builder().thinktime(5000).build());
-				}
+				
+				int num=Integer.parseInt(qty);
+				num=num+13;
+				label=app.label("#"+num).get(new Mods.Builder().thinktime(5000).build());
+				
 			}
 			else
 			{
-				if (qty.contains(">"))
-				{
-					label=app.label("#23").get(new Mods.Builder().thinktime(5000).build());
-				}
-				else
-				{
-					label=app.label("#24").get(new Mods.Builder().thinktime(5000).build());
-				}
+					int num=Integer.parseInt(qty);
+					num=num+14;
+					label=app.label("#"+num).get(new Mods.Builder().thinktime(5000).build());
 			}
 		}
 		else
@@ -141,6 +133,20 @@ public class GetConfirmationTicket {
 		else
 		{
 			label=app.label("#62").get(new Mods.Builder().thinktime(5000).build());
+		}
+		return label;
+	}
+	
+	public String getDeleteOrderFromEdit(Application app){
+		String resolution=app.device().get("resolution");
+		String label;
+		if (resolution.equals("640x960"))
+		{
+			label=app.label("#20").get(new Mods.Builder().thinktime(5000).build());
+		}
+		else
+		{
+			label=app.label("#19").get(new Mods.Builder().thinktime(5000).build());
 		}
 		return label;
 	}

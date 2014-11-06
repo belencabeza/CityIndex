@@ -157,7 +157,7 @@ public class ValueRetriever {
 	public String getPriceOrder(Application app){
 		String price=app.label("#13").get("value");
 		int num=15;
-		while(!price.contains(">"))
+		while(!price.contains("< "))
 		{
 			price=app.label("#"+num).get();
 			num=num+1;
@@ -184,6 +184,7 @@ public class ValueRetriever {
 		return price;
 	}
 	
+	//get Time in Order
 	public String getTime(Application app){
 		String time=app.datePicker("_dpGoodUntil").get("value");
 		String timeDay=time.substring(8, 10);
@@ -194,10 +195,56 @@ public class ValueRetriever {
 		return time;
 	}
 	
+	//get Quantity in Order to verify position of confirmation ticket
 	public String getQty(Application app){
-		String qty=app.label("#9").get("value", new Mods.Builder().thinktime(5000).build());
-		return qty;
-		
+		String qty=app.label("#9").get(new Mods.Builder().thinktime(5000).build());
+		int num=9;
+		while(!qty.contains(">"))
+		{
+			num=num+1;
+			qty=app.label("#"+num).get();	
+		}
+		return Integer.toString(num);
+	}
+	
+	//Get quantity input value
+	public String getQuantityInputOrder(Application app){
+		String quantity=app.input("1").get();
+		if (quantity.contains("."))
+		{
+			quantity=quantity.substring(0, quantity.indexOf("."));
+		}
+		if (quantity.contains(","))
+		{
+			quantity=quantity.replaceAll( "[^\\d]", "" );
+		}
+		long quantityentero= Long.parseLong(quantity);
+		quantity=Long.toString(quantityentero+2);
+		return quantity;
+	}
+	
+	//Get Price input value
+	public String getPriceInputOrder(Application app){
+		String price=app.input("2").get();
+		if (price.contains("."))
+		{
+			price=price.substring(0, price.indexOf("."));
+		}
+		if (price.contains(","))
+		{
+			price=price.replaceAll( "[^\\d]", "" );
+		}
+		BigDecimal priceentero= new BigDecimal(new Float(price));
+		if (priceentero.longValue()<=1)
+		{
+			priceentero=priceentero.subtract(new BigDecimal(0.1));
+		}
+		else
+		{
+			priceentero=priceentero.subtract(new BigDecimal(10));
+		}
+		price=priceentero.toString();
+		return price;
 	}
 
 

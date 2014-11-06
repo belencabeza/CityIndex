@@ -10,13 +10,16 @@ import fit.ColumnFixture;
 
 //CIPH-14: Edit Trade before to close it
 public class EditCloseTradeClass extends ColumnFixture{
+	public String cfdMarket;
 	
 	public String editCloseTrade() throws MonkeyTalkFailure{
 			
 		Application app=new ConnectClass().connect();
 		try 
 		{
-			new NormalTradeClass().normalTrade();
+			NormalTradeClass trade=new NormalTradeClass();
+			trade.cfdMarket=cfdMarket;
+			trade.normalTrade();
 			app.label("Back").tap();
 			app.label("Back").tap();
 			app.tabBar().select("Positions");

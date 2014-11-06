@@ -1,5 +1,6 @@
 package tradePackage;
 
+
 import com.gorillalogic.monkeytalk.java.api.Application;
 import com.gorillalogic.monkeytalk.java.error.MonkeyTalkFailure;
 import com.gorillalogic.monkeytalk.java.utils.Mods;
@@ -9,25 +10,28 @@ import common.GetConfirmationTicket;
 import fit.ColumnFixture;
 
 public class CloseTradeClass extends ColumnFixture{
-
+	
+	public String cfdMarket;
+	
 	public String closeTrade() throws MonkeyTalkFailure
 	{
 		Application app=new ConnectClass().connect();
 		try
 		{
-			new NormalTradeClass().normalTrade();
+			NormalTradeClass trade=new NormalTradeClass();
+			trade.cfdMarket=cfdMarket;
+			trade.normalTrade();
 			app.label("Back").tap();
 			app.label("Back").tap();
 			app.tabBar().select("Positions");
-			app.button("listView white").tap(new Mods.Builder().thinktime(5000).build());
+			app.label(cfdMarket).tap();
 			app.button("Close").tap(new Mods.Builder().thinktime(5000).build());
-			app.label("Single Position").tap();
-			app.button("Buy").tap();
+			app.label("Single Position").verify();
+			app.button("Buy").tap(new Mods.Builder().thinktime(5000).build());
 	
 			String label=new GetConfirmationTicket().getConfirmationTicketClose(app);
 			app.button("OK").tap(new Mods.Builder().thinktime(5000).build());
 			app.label("Single Positions").verify(new Mods.Builder().thinktime(5000).build());
-			app.button("boxView white").tap();
 			if (label==null)
 			{
 				app.label("OK").tap(new Mods.Builder().thinktime(5000).build());

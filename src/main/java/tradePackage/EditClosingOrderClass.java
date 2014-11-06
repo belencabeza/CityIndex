@@ -11,12 +11,17 @@ import fit.ColumnFixture;
 
 //CIPH-379: Edit a Closing order
 public class EditClosingOrderClass extends ColumnFixture {
+	
+	public String cfdMarket;
+	
 	public String editClosingOrder() throws MonkeyTalkFailure
 	{
 		Application app=new ConnectClass().connect();
 		try
 		{
-			new TradeStopLimitClass().tradeStopLimit();
+			TradeStopLimitClass trade=new TradeStopLimitClass();
+			trade.cfdMarket=cfdMarket;
+			trade.tradeStopLimit();
 			
 			app.table("Empty list").selectIndex(1, new Mods.Builder().thinktime(5000).build());
 			
