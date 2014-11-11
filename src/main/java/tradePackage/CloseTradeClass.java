@@ -22,12 +22,11 @@ public class CloseTradeClass extends ColumnFixture{
 			trade.cfdMarket=cfdMarket;
 			trade.normalTrade();
 			app.label("Back").tap();
-			app.label("Back").tap();
 			app.tabBar().select("Positions");
-			app.label(cfdMarket).tap();
+			app.label(cfdMarket).tap(new Mods.Builder().thinktime(5000).build());
 			app.button("Close").tap(new Mods.Builder().thinktime(5000).build());
 			app.label("Single Position").verify();
-			app.button("Buy").tap(new Mods.Builder().thinktime(5000).build());
+			app.label("Buy(2)").tap(new Mods.Builder().thinktime(5000).build());
 	
 			String label=new GetConfirmationTicket().getConfirmationTicketClose(app);
 			app.button("OK").tap(new Mods.Builder().thinktime(5000).build());

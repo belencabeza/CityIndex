@@ -23,7 +23,7 @@ public class EditClosingOrderClass extends ColumnFixture {
 			trade.cfdMarket=cfdMarket;
 			trade.tradeStopLimit();
 			
-			app.table("Empty list").selectIndex(1, new Mods.Builder().thinktime(5000).build());
+			app.table("Empty list").selectIndex(1, new Mods.Builder().thinktime(10000).build());
 			
 			app.label("Stop / Limits").verify(new Mods.Builder().thinktime(5000).build());
 			String stopPriceInput= new ValueRetriever().getStopPriceInput(app);

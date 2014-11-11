@@ -10,6 +10,19 @@ public class ValueRetriever {
 	//get quantity in trade
 	public String getQuantityTrade(Application app){
 		String quantity=app.label("#11").get();
+		int num=13;
+		
+		do{
+			quantity=app.label("#"+num).get();
+			while(quantity==null)
+			{
+				num=num+1;
+				quantity=app.label("#"+num).get();
+			}
+			num=num+1;			
+		}while(!quantity.contains(">="));
+
+		
 		if (quantity.contains("."))
 		{
 			quantity=quantity.substring(3, quantity.indexOf("."));
@@ -25,6 +38,21 @@ public class ValueRetriever {
 		long quantityentero= Long.parseLong(quantity);
 		quantity=Long.toString(quantityentero+10);
 		return quantity;
+	}
+	
+	public String getQtyTrade(Application app){
+		String qty=app.label("#11").get(new Mods.Builder().thinktime(5000).build());
+		int num=13;
+		do{
+			qty=app.label("#"+num).get();
+			while(qty==null)
+			{
+				num=num+1;
+				qty=app.label("#"+num).get();
+			}
+			num=num+1;			
+		}while(!qty.contains(">="));
+		return Integer.toString(num);
 	}
 	
 	//get stop price in Stop&Limit
@@ -130,7 +158,7 @@ public class ValueRetriever {
 	public String getQuantityOrder(Application app){
 		String quantity=app.label("#9").get("value", new Mods.Builder().thinktime(5000).build());
 		int num=11;
-		while(!quantity.contains(">"))
+		while(!quantity.contains(">")|| quantity.isEmpty())
 		{
 			quantity=app.label("#"+num).get();
 			num=num+1;

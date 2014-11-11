@@ -21,10 +21,9 @@ public class EditCloseTradeClass extends ColumnFixture{
 			trade.cfdMarket=cfdMarket;
 			trade.normalTrade();
 			app.label("Back").tap();
-			app.label("Back").tap();
 			app.tabBar().select("Positions");
-			app.button("listView white").tap(new Mods.Builder().thinktime(5000).build());
-			app.button("Close").tap(new Mods.Builder().thinktime(5000).build());
+			app.label(cfdMarket).tap(new Mods.Builder().thinktime(5000).build());
+			app.button("Close").tap(new Mods.Builder().thinktime(10000).build());
 			app.label("Single Position").tap();
 			String quantity= app.input("#1").get("value");
 			long quantityentero= Long.parseLong(quantity);
@@ -34,7 +33,6 @@ public class EditCloseTradeClass extends ColumnFixture{
 			String label=new GetConfirmationTicket().getConfirmationTicketClose(app);
 			app.button("OK").tap(new Mods.Builder().thinktime(5000).build());
 			app.label("Single Positions").verify(new Mods.Builder().thinktime(5000).build());
-			app.button("boxView white").tap();
 			if (label==null)
 			{
 				app.label("OK").tap(new Mods.Builder().thinktime(5000).build());

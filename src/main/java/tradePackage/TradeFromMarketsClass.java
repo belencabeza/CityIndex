@@ -35,6 +35,7 @@ public class TradeFromMarketsClass extends ColumnFixture{
 			
 			app.input("Quantity").enterText(quantity);
 			app.button("Sell").tap();
+			String qty=new ValueRetriever().getQtyTrade(app);
 			app.button("Trade").tap(new Mods.Builder().thinktime(5000).build());
 
 			CheckElement element=new CheckElement();
@@ -46,7 +47,7 @@ public class TradeFromMarketsClass extends ColumnFixture{
 			
 			
 			//Get trade confirmation ticket depending on iPhone used
-			String label=new GetConfirmationTicket().getConfirmationTicket(app);
+			String label=new GetConfirmationTicket().getConfirmationTicket(app, qty);
 			
 			app.button("OK").tap(new Mods.Builder().thinktime(5000).build());
 			

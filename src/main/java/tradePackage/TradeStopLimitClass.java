@@ -41,10 +41,11 @@ public class TradeStopLimitClass extends ColumnFixture{
 			app.button("209").tap();
 			CheckElement element=new CheckElement();
 			results= element.checkLabel(app, "Order Stop Limit 1");
+			String qty=new ValueRetriever().getQtyTrade(app);
 			
 			app.button("Trade").tap(new Mods.Builder().thinktime(5000).build());
 			
-			String label=new GetConfirmationTicket().getConfirmationTicket(app);
+			String label=new GetConfirmationTicket().getConfirmationTicket(app, qty);
 			
 			app.button("OK").tap(new Mods.Builder().thinktime(5000).build());
 			
@@ -62,7 +63,7 @@ public class TradeStopLimitClass extends ColumnFixture{
 			app.tabBar().select("Positions");
 			app.label("Direction").tap(new Mods.Builder().thinktime(5000).build());
 			app.button("Closing Orders").tap(new Mods.Builder().thinktime(5000).build());
-			app.button("Delete").verify(new Mods.Builder().thinktime(5000).build());
+			app.button("Delete").verify(new Mods.Builder().thinktime(10000).build());
 			
 			if(results==null){
 				results="";

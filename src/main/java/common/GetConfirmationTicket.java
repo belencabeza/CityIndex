@@ -5,16 +5,20 @@ import com.gorillalogic.monkeytalk.java.utils.Mods;
 
 public class GetConfirmationTicket {
 	
-	public String getConfirmationTicket(Application app){
+	public String getConfirmationTicket(Application app, String qty){
 		String resolution=app.device().get("resolution");
 		String label;
 		if (resolution.equals("640x960"))
 		{
-			label=app.label("#14").get(new Mods.Builder().thinktime(5000).build());
+			int num=Integer.parseInt(qty);
+			num=num+4;
+			label=app.label("#"+num).get(new Mods.Builder().thinktime(5000).build());
 		}
 		else
 		{
-			label=app.label("#15").get(new Mods.Builder().thinktime(5000).build());
+			int num=Integer.parseInt(qty);
+			num=num+5;
+			label=app.label("#"+num).get(new Mods.Builder().thinktime(5000).build());
 		}
 		return label;
 	}
@@ -39,7 +43,7 @@ public class GetConfirmationTicket {
 		String label;
 		if (resolution.equals("640x960"))
 		{
-			label=app.label("#22").get(new Mods.Builder().thinktime(10000).build());
+			label=app.label("#22").get(new Mods.Builder().thinktime(15000).build());
 		}
 		else
 		{
@@ -76,16 +80,20 @@ public class GetConfirmationTicket {
 		return label;
 	}
 	
-	public String getCalculteMargin(Application app){
+	public String getCalculteMargin(Application app, String qty){
 		String resolution=app.device().get("resolution");
 		String label;
 		if (resolution.equals("640x960"))
 		{
-			label=app.label("#12").get(new Mods.Builder().thinktime(5000).build());
+			int num=Integer.parseInt(qty);
+			num=num+1;
+			label=app.label("#"+num).get(new Mods.Builder().thinktime(5000).build());
 		}
 		else
 		{
-			label=app.label("#13").get(new Mods.Builder().thinktime(5000).build());
+			int num=Integer.parseInt(qty);
+			num=num+2;
+			label=app.label("#"+num).get(new Mods.Builder().thinktime(5000).build());
 		}
 		return label;
 	}
