@@ -1,4 +1,5 @@
 email\SendEmail$1.class
+orderPackage\SetOcoClass.class
 tradePackage\CalculateMarginClass.class
 tradePackage\TradeAutorolloverClass.class
 common\CheckElement.class
@@ -14,6 +15,7 @@ orderPackage\OrderOptionMarketsClass.class
 CI\City_Index\Main.class
 orderPackage\DeleteOrderFromEditClass.class
 common\ConnectClass.class
+orderPackage\ActiveOrderClass.class
 reports\ExpressionColumn.class
 tradePackage\EditCloseTradeClass.class
 orderPackage\DeleteOrderClass.class
@@ -23,5 +25,6 @@ tradePackage\EditClosingOrderClass.class
 orderPackage\EditOrderClass.class
 orderPackage\EntryNewOrderClass.class
 tradePackage\TradeStopLimitClass.class
+orderPackage\ActiveOrderFromMoreClass.class
 common\GetConfirmationTicket.class
 common\ValueRetriever.class

@@ -11,29 +11,33 @@ public class GetConfirmationTicket {
 		if (resolution.equals("640x960"))
 		{
 			int num=Integer.parseInt(qty);
-			num=num+4;
+			num=num+3;
 			label=app.label("#"+num).get(new Mods.Builder().thinktime(5000).build());
 		}
 		else
 		{
 			int num=Integer.parseInt(qty);
-			num=num+5;
+			num=num+4;
 			label=app.label("#"+num).get(new Mods.Builder().thinktime(5000).build());
 		}
 		return label;
 	}
 	
-	public String getConfirmationTicketAutorollover(Application app)
+	public String getConfirmationTicketAutorollover(Application app, String qty)
 	{
 		String resolution=app.device().get("resolution");
 		String label;
 		if (resolution.equals("640x960"))
 		{
-			label=app.label("#15").get(new Mods.Builder().thinktime(5000).build());
+			int num=Integer.parseInt(qty);
+			num=num+3;
+			label=app.label("#"+num).get(new Mods.Builder().thinktime(5000).build());
 		}
 		else
 		{
-			label=app.label("#16").get(new Mods.Builder().thinktime(5000).build());
+			int num=Integer.parseInt(qty);
+			num=num+4;
+			label=app.label("#"+num).get(new Mods.Builder().thinktime(5000).build());
 		}
 		return label;
 	}
@@ -52,7 +56,25 @@ public class GetConfirmationTicket {
 		return label;
 	}
 	
-	public String getConfirmationTicketClosingOrder(Application app){
+	public String getConfirmationTicketClosingOrder(Application app, String qty){
+		String resolution=app.device().get("resolution");
+		String label;
+		if (resolution.equals("640x960"))
+		{
+			int num=Integer.parseInt(qty);
+			num=num+3;
+			label=app.label("#"+num).get(new Mods.Builder().thinktime(5000).build());
+		}
+		else
+		{
+			int num=Integer.parseInt(qty);
+			num=num+4;
+			label=app.label("#"+num).get(new Mods.Builder().thinktime(5000).build());
+		}
+		return label;
+	}
+	
+	public String getConfirmationTicketEditClosingOrder(Application app){
 		String resolution=app.device().get("resolution");
 		String label;
 		if (resolution.equals("640x960"))

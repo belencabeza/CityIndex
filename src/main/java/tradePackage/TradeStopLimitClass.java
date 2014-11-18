@@ -45,7 +45,7 @@ public class TradeStopLimitClass extends ColumnFixture{
 			
 			app.button("Trade").tap(new Mods.Builder().thinktime(5000).build());
 			
-			String label=new GetConfirmationTicket().getConfirmationTicket(app, qty);
+			String label=new GetConfirmationTicket().getConfirmationTicketClosingOrder(app, qty);
 			
 			app.button("OK").tap(new Mods.Builder().thinktime(5000).build());
 			

@@ -36,7 +36,7 @@ public class EditClosingOrderClass extends ColumnFixture {
 			app.input("Quantity(2)").enterText(limitQuantityInput);
 			app.button("Set Stop & Limit").tap();	
 			
-			String label=new GetConfirmationTicket().getConfirmationTicketClosingOrder(app);
+			String label=new GetConfirmationTicket().getConfirmationTicketEditClosingOrder(app);
 			if (label==null)
 			{
 				app.label("OK").tap(new Mods.Builder().thinktime(5000).build());
@@ -75,10 +75,6 @@ public class EditClosingOrderClass extends ColumnFixture {
 				limitPrice=limitPrice.replaceAll( "[^\\d]", "" );
 			}
 			String limitQuantity= app.label("#30").get();
-			System.out.println(stopPrice);
-			System.out.println(stopQuantity);
-			System.out.println(limitPrice);
-			System.out.println(limitQuantity);
 			if (stopPrice.equals(stopPriceInput) && stopQuantity.equals(stopQuantityInput) && limitPrice.equals(limitPriceInput) && limitQuantity.equals(limitQuantityInput))
 			{
 				return "Pass";

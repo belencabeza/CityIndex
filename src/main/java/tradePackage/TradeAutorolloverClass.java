@@ -28,10 +28,11 @@ public class TradeAutorolloverClass extends ColumnFixture{
 			app.input("Quantity").enterText(quantity);
 			
 			app.toggle("12006").on();
+			String qty=new ValueRetriever().getQtyTrade(app);
 			app.button("Trade").tap();
 			
 			//Get trade confirmation ticket depending on iPhone used
-			String label=new GetConfirmationTicket().getConfirmationTicketAutorollover(app);
+			String label=new GetConfirmationTicket().getConfirmationTicketAutorollover(app, qty);
 			
 			app.button("OK").tap(new Mods.Builder().thinktime(5000).build());
 			if (label==null)

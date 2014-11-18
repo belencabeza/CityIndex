@@ -20,7 +20,7 @@ public class DeleteClosingOrderClass extends ColumnFixture{
 			TradeStopLimitClass trade=new TradeStopLimitClass();
 			trade.cfdMarket=cfdMarket;
 			trade.tradeStopLimit();
-			app.label("Delete").tap();
+			app.label("Delete").tap(new Mods.Builder().thinktime(5000).build());
 			String label= new GetConfirmationTicket().getConfirmationDelete(app);
 			if (label==null)
 			{

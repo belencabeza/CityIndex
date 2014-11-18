@@ -46,6 +46,19 @@ public class EntryNewOrderClass extends ColumnFixture {
 				String time=new ValueRetriever().getTime(app);
 				app.datePicker("_dpGoodUntil").enterDateAndTime(time);
 				app.label("Set Time").tap();
+				try
+				{
+					app.label("Error").verifyNot();
+				}
+				catch(MonkeyTalkFailure e)
+				{
+					app.label("OK").tap();
+					long timeNum= Long.parseLong(time);
+					timeNum=timeNum+2;
+					String timeDay=Long.toString(timeNum);
+					time=time.substring(0,8)+timeDay+time.substring(10);
+					return time;
+				}
 			}
 			String qty=new ValueRetriever().getQty(app);
 			app.button("211").tap();
