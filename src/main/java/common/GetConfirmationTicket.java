@@ -153,6 +153,7 @@ public class GetConfirmationTicket {
 		}
 		return label;
 	}
+	
 	public String getDeleteOrder(Application app){
 		String resolution=app.device().get("resolution");
 		String label;
@@ -177,6 +178,74 @@ public class GetConfirmationTicket {
 		else
 		{
 			label=app.label("#19").get(new Mods.Builder().thinktime(5000).build());
+		}
+		return label;
+	}
+	
+	public String getConfirmationOcoOrder(Application app, String goodUntil, String qty){
+		String resolution=app.device().get("resolution");
+		String label;
+		if (resolution.equals("640x960"))
+		{
+			if (goodUntil.contains("Time"))
+			{
+				
+				int num=Integer.parseInt(qty);
+				num=num+11;
+				label=app.label("#"+num).get(new Mods.Builder().thinktime(5000).build());
+				
+			}
+			else
+			{
+				int num=Integer.parseInt(qty);
+				num=num+12;
+				label=app.label("#"+num).get(new Mods.Builder().thinktime(5000).build());
+			}
+		}
+		else
+		{
+			if (goodUntil.contains("Time"))
+			{
+				label=app.label("#25").get(new Mods.Builder().thinktime(5000).build());
+			}
+			else
+			{
+				label=app.label("#24").get(new Mods.Builder().thinktime(5000).build());
+			}
+		}
+		return label;
+	}
+	
+	public String getConfirmationAddOcoOrder(Application app, String goodUntil, String qty){
+		String resolution=app.device().get("resolution");
+		String label;
+		if (resolution.equals("640x960"))
+		{
+			if (goodUntil.contains("Time"))
+			{
+				
+				int num=Integer.parseInt(qty);
+				num=num+12;
+				label=app.label("#"+num).get(new Mods.Builder().thinktime(5000).build());
+				
+			}
+			else
+			{
+				int num=Integer.parseInt(qty);
+				num=num+13;
+				label=app.label("#"+num).get(new Mods.Builder().thinktime(5000).build());
+			}
+		}
+		else
+		{
+			if (goodUntil.contains("Time"))
+			{
+				label=app.label("#25").get(new Mods.Builder().thinktime(5000).build());
+			}
+			else
+			{
+				label=app.label("#24").get(new Mods.Builder().thinktime(5000).build());
+			}
 		}
 		return label;
 	}

@@ -180,7 +180,7 @@ public class ValueRetriever {
 	public String getQuantityOrder(Application app){
 		String quantity=app.label("#9").get("value", new Mods.Builder().thinktime(5000).build());
 		int num=11;
-		while(!quantity.contains(">")|| quantity.isEmpty())
+		while(!quantity.contains(">")|| quantity==null)
 		{
 			quantity=app.label("#"+num).get();
 			num=num+1;
@@ -207,7 +207,7 @@ public class ValueRetriever {
 	public String getPriceOrder(Application app){
 		String price=app.label("#13").get("value");
 		int num=15;
-		while(!price.contains("< "))
+		while(!price.contains("< ") || price==null)
 		{
 			price=app.label("#"+num).get();
 			num=num+1;
@@ -245,11 +245,22 @@ public class ValueRetriever {
 		return time;
 	}
 	
+	public String getTimeSet(Application app, String timeYear){
+		String timeSet=app.label("#20").get();
+		int num=21;
+		while(!timeSet.contains(timeYear) || timeSet==null)
+		{
+			timeSet=app.label("#"+num).get();
+			num=num+1;
+		}
+		return timeSet;
+	}
+	
 	//get Quantity in Order to verify position of confirmation ticket
 	public String getQty(Application app){
 		String qty=app.label("#9").get(new Mods.Builder().thinktime(5000).build());
 		int num=9;
-		while(!qty.contains(">"))
+		while(!qty.contains(">")|| qty==null)
 		{
 			num=num+1;
 			qty=app.label("#"+num).get();	
@@ -301,11 +312,15 @@ public class ValueRetriever {
 	public String getQuantityOCO(Application app){
 		String quantity=app.label("#11").get("value", new Mods.Builder().thinktime(5000).build());
 		int num=11;
-		while(!quantity.contains(">")|| quantity.isEmpty())
-		{
+		do{
 			quantity=app.label("#"+num).get();
-			num=num+1;
-		}
+			while(quantity==null)
+			{
+				num=num+1;
+				quantity=app.label("#"+num).get();
+			}
+			num=num+1;			
+		}while(!quantity.contains(">"));
 		
 		if (quantity.contains("."))
 		{
@@ -327,12 +342,16 @@ public class ValueRetriever {
 	//Get Price of OCO Order
 	public String getPriceOCO(Application app){
 		String price=app.label("#15").get("value");
-		int num=16;
-		while(!price.contains("> "))
-		{
+		int num=15;
+		do{
 			price=app.label("#"+num).get();
-			num=num+1;
-		}
+			while(price==null)
+			{
+				num=num+1;
+				price=app.label("#"+num).get();
+			}
+			num=num+1;			
+		}while(!price.contains("> "));
 		if (price.indexOf(".")>0)
 		{
 			price=price.substring(0, price.indexOf("."));
@@ -354,6 +373,104 @@ public class ValueRetriever {
 		price=priceentero.toString();
 		return price;
 	}
+	
+	//Get Quantity in input of the OCO Order
+	public String getQuantityInputOco(Application app){
+		String quantity=app.input("1").get();
+		if (quantity.contains("."))
+		{
+			quantity=quantity.substring(0, quantity.indexOf("."));
+		}
+		if (quantity.contains(","))
+		{
+			quantity=quantity.replaceAll( "[^\\d]", "" );
+		}
+		long quantityentero= Long.parseLong(quantity);
+		quantity=Long.toString(quantityentero+2);
+		return quantity;
+	}
+	
+	//Get Price in input of the OCO Order
+	public String getPriceInputOco(Application app){
+		String price=app.input("2").get();
+		if (price.contains("."))
+		{
+			price=price.substring(0, price.indexOf("."));
+		}
+		if (price.contains(","))
+		{
+			price=price.replaceAll( "[^\\d]", "" );
+		}
+		BigDecimal priceentero= new BigDecimal(new Float(price));
+		if (priceentero.longValue()<=1)
+		{
+			priceentero=priceentero.add(new BigDecimal(0.1));
+		}
+		else
+		{
+			priceentero=priceentero.add(new BigDecimal(10));
+		}
+		price=priceentero.toString();
+		return price;
+	}
 
+	//get stop price in Stop&Limit
+		public String getStopPriceOco(Application app){
+			String stopprice=app.label("#10").get();
+		
+			int num=10;
+			do{
+				stopprice=app.label("#"+num).get();
+				while(stopprice==null)
+				{
+					num=num+1;
+					stopprice=app.label("#"+num).get();
+				}
+				num=num+1;			
+			}while(!stopprice.contains("< "));
+			
+			stopprice=stopprice.substring(2, stopprice.indexOf("."));
+			if (stopprice.contains(","))
+			{
+				stopprice=stopprice.replaceAll( "[^\\d]", "" );
+			}
+			BigDecimal stopentero= new BigDecimal(new Float(stopprice));
+			stopentero=stopentero.subtract(new BigDecimal(10));
+			stopprice=stopentero.toString();
+			return stopprice;
+		}
+		
+		//get limit price in Stop&Limit
+		public String getLimitPriceOco(Application app){
+			String limitprice=app.label("#15").get();
+		
+			int num=15;
+			do{
+				limitprice=app.label("#"+num).get();
+				while(limitprice==null)
+				{
+					num=num+1;
+					limitprice=app.label("#"+num).get();
+				}
+				num=num+1;			
+			}while(!limitprice.contains("> "));
+			
+			limitprice=limitprice.substring(2, limitprice.indexOf("."));
+			if (limitprice.contains(","))
+			{
+				limitprice=limitprice.replaceAll( "[^\\d]", "" );
+			}
+			BigDecimal limitentero= new BigDecimal(new Float(limitprice));
+			if (limitentero.longValue()<=1)
+			{
+				limitentero=limitentero.add(new BigDecimal(0.1));
+			}
+			else
+			{
+				limitentero=limitentero.add(new BigDecimal(10));
+			}
+			limitprice=limitentero.toString();
+			return limitprice;
+		}
 
 }

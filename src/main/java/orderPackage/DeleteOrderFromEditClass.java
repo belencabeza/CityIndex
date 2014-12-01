@@ -28,7 +28,7 @@ public class DeleteOrderFromEditClass extends ColumnFixture{
 			 results= element.checkLabel(app, "Good Until");
 			 results= element.checkLabel(app, "Update Order");
 			 results= element.checkNotLabel(app, "Positions");
-			 app.scroller("#4").scroll(0, 60);;
+			 app.scroller("#4").scroll(0, 60);
 			 app.label("Delete Order").tap();
 			 app.label("Are you sure you want to delete this order?").verify();
 			 app.label("Delete").tap();

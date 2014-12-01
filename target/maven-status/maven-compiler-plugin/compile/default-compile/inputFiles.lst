@@ -3,13 +3,13 @@ C:\Users\mcabeza\workspace3\City_Index\src\main\java\email\SendEmail.java
 C:\Users\mcabeza\workspace3\City_Index\src\main\java\reports\ExpressionColumn.java
 C:\Users\mcabeza\workspace3\City_Index\src\main\java\orderPackage\DeleteOrderClass.java
 C:\Users\mcabeza\workspace3\City_Index\src\main\java\tradePackage\EditClosingOrderClass.java
+C:\Users\mcabeza\workspace3\City_Index\src\main\java\ocoOrderPackage\SetOcoClass.java
 C:\Users\mcabeza\workspace3\City_Index\src\main\java\tradePackage\EditCloseTradeClass.java
 C:\Users\mcabeza\workspace3\City_Index\src\main\java\tradePackage\TradeAutorolloverClass.java
 C:\Users\mcabeza\workspace3\City_Index\src\main\java\tradePackage\TradeFromMarketsClass.java
 C:\Users\mcabeza\workspace3\City_Index\src\main\java\common\ConnectClass.java
 C:\Users\mcabeza\workspace3\City_Index\src\main\java\tradePackage\CalculateMarginClass.java
 C:\Users\mcabeza\workspace3\City_Index\src\main\java\reports\Reporte.java
-C:\Users\mcabeza\workspace3\City_Index\src\main\java\orderPackage\SetOcoClass.java
 C:\Users\mcabeza\workspace3\City_Index\src\main\java\tradePackage\NormalTradeClass.java
 C:\Users\mcabeza\workspace3\City_Index\src\main\java\CI\City_Index\Main.java
 C:\Users\mcabeza\workspace3\City_Index\src\main\java\common\CheckElement.java
@@ -21,9 +21,12 @@ C:\Users\mcabeza\workspace3\City_Index\src\main\java\common\GetConfirmationTicke
 C:\Users\mcabeza\workspace3\City_Index\src\main\java\tradePackage\TradeStopLimitClass.java
 C:\Users\mcabeza\workspace3\City_Index\src\main\java\tradePackage\DeleteClosingOrderClass.java
 C:\Users\mcabeza\workspace3\City_Index\src\main\java\orderPackage\ActiveOrderClass.java
+C:\Users\mcabeza\workspace3\City_Index\src\main\java\ocoOrderPackage\SetOcoStopLimitClass.java
 C:\Users\mcabeza\workspace3\City_Index\src\main\java\common\ValueRetriever.java
 C:\Users\mcabeza\workspace3\City_Index\src\main\java\orderPackage\OrderOptionMarketsClass.java
 C:\Users\mcabeza\workspace3\City_Index\src\main\java\loginLogoutPackage\LoginClass.java
+C:\Users\mcabeza\workspace3\City_Index\src\main\java\ocoOrderPackage\AddOcoClass.java
 C:\Users\mcabeza\workspace3\City_Index\src\main\java\tradePackage\CloseTradeClass.java
+C:\Users\mcabeza\workspace3\City_Index\src\main\java\ocoOrderPackage\UpdateOcoClass.java
 C:\Users\mcabeza\workspace3\City_Index\src\main\java\tradePackage\TradeOptionMarketsClass.java
 C:\Users\mcabeza\workspace3\City_Index\src\main\java\orderPackage\DeleteOrderFromEditClass.java

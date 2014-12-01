@@ -18,6 +18,7 @@ public class EntryNewOrderClass extends ColumnFixture {
 	 String results=null;
 	 public String cfdMarket;
 	 public String dftMarket;
+	 String timeYear;
 	 
 	 public String entryNewOrder() throws MonkeyTalkFailure{
 			
@@ -53,10 +54,33 @@ public class EntryNewOrderClass extends ColumnFixture {
 				catch(MonkeyTalkFailure e)
 				{
 					app.label("OK").tap();
-					long timeNum= Long.parseLong(time);
+					//Day
+					String timeDay=time.substring(8, 10);
+					long timeNum= Long.parseLong(timeDay);
+					//Month
+					String timeMonth=time.substring(5,7);
+					long timeMonthNum=Long.parseLong(timeMonth);
+					//Year
+					timeYear=time.substring(0,4);
+					long timeYearNum=Long.parseLong(timeYear);
 					timeNum=timeNum+2;
-					String timeDay=Long.toString(timeNum);
-					time=time.substring(0,8)+timeDay+time.substring(10);
+					if(timeNum>=31)
+					{
+						timeNum=2;
+						timeMonthNum=timeMonthNum+1;
+						if (timeMonthNum>12)
+						{
+							timeMonthNum=1;
+							timeYearNum=timeYearNum+1;
+							
+						}
+					}
+					
+					timeDay=Long.toString(timeNum);
+					timeMonth=Long.toString(timeMonthNum);
+					timeYear=Long.toString(timeYearNum);
+					time=timeYear+"-"+timeMonth+"-"+timeDay+time.substring(10);
+					app.datePicker("_dpGoodUntil").enterDateAndTime(time);
 					return time;
 				}
 			}

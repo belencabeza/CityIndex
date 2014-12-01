@@ -1,10 +1,11 @@
 email\SendEmail$1.class
-orderPackage\SetOcoClass.class
 tradePackage\CalculateMarginClass.class
 tradePackage\TradeAutorolloverClass.class
 common\CheckElement.class
 reports\Reporte.class
+ocoOrderPackage\SetOcoClass.class
 tradePackage\NormalTradeClass.class
+ocoOrderPackage\SetOcoStopLimitClass.class
 tradePackage\CloseTradeClass.class
 tradePackage\TradeFromMarketsClass.class
 tradePackage\TradeOptionMarketsClass.class
@@ -21,7 +22,9 @@ tradePackage\EditCloseTradeClass.class
 orderPackage\DeleteOrderClass.class
 CI\City_Index\AppTest.class
 loginLogoutPackage\LogoutClass.class
+ocoOrderPackage\AddOcoClass.class
 tradePackage\DeleteClosingOrderClass.class
+ocoOrderPackage\UpdateOcoClass.class
 tradePackage\EditClosingOrderClass.class
 orderPackage\EditOrderClass.class
 orderPackage\EntryNewOrderClass.class
