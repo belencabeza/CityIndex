@@ -24,6 +24,7 @@ CI\City_Index\AppTest.class
 loginLogoutPackage\LogoutClass.class
 ocoOrderPackage\AddOcoClass.class
 tradePackage\DeleteClosingOrderClass.class
+ocoOrderPackage\EditOcoStopLimitClass.class
 ocoOrderPackage\UpdateOcoClass.class
 tradePackage\EditClosingOrderClass.class
 orderPackage\EditOrderClass.class

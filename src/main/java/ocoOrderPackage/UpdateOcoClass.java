@@ -1,7 +1,5 @@
 package ocoOrderPackage;
 
-import java.math.BigDecimal;
-
 import com.gorillalogic.monkeytalk.java.api.Application;
 import com.gorillalogic.monkeytalk.java.error.MonkeyTalkFailure;
 import com.gorillalogic.monkeytalk.java.utils.Mods;
@@ -75,29 +73,8 @@ public class UpdateOcoClass extends ColumnFixture {
 			 	{
 					app.table("Empty list").selectIndex(1, new Mods.Builder().thinktime(5000).build());
 					
-					String quantityInput=app.input("1").get();
-					if (quantityInput.contains("."))
-					{
-						quantityInput=quantityInput.substring(0, quantityInput.indexOf("."));
-					}
-					if (quantityInput.contains(","))
-					{
-						quantityInput=quantityInput.replaceAll( "[^\\d]", "" );
-					}
-					long quantityInputentero= Long.parseLong(quantityInput);
-					quantityInput=Long.toString(quantityInputentero);
-					
-					String priceInput=app.input("2").get();
-					if (priceInput.contains("."))
-					{
-						priceInput=priceInput.substring(0, priceInput.indexOf("."));
-					}
-					if (priceInput.contains(","))
-					{
-						priceInput=priceInput.replaceAll( "[^\\d]", "" );
-					}
-					BigDecimal priceInputentero= new BigDecimal(new Float(priceInput));
-					priceInput=priceInputentero.toString();
+					String quantityInput=new ValueRetriever().getQtyUpdateInputOco(app);
+					String priceInput=new ValueRetriever().getPriceUpdateInputOco(app);		
 					
 					if (quantity.equals(quantityInput) && price.equals(priceInput))
 					{

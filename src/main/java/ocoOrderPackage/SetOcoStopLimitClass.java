@@ -1,6 +1,5 @@
 package ocoOrderPackage;
 
-import java.math.BigDecimal;
 
 import com.gorillalogic.monkeytalk.java.api.Application;
 import com.gorillalogic.monkeytalk.java.error.MonkeyTalkFailure;
@@ -147,61 +146,19 @@ public class SetOcoStopLimitClass extends ColumnFixture{
 				 }
 				 app.scroller("#4").scroll(0, 60, new Mods.Builder().thinktime(5000).build() );
 				 app.label("Order Stop Limit 1").tap(new Mods.Builder().thinktime(5000).build());
-				 String quantityStopInput=app.input("2").get(new Mods.Builder().thinktime(5000).build());
-					if (quantityStopInput.contains("."))
-					{
-						quantityStopInput=quantityStopInput.substring(0, quantityStopInput.indexOf("."));
-					}
-					if (quantityStopInput.contains(","))
-					{
-						quantityStopInput=quantityStopInput.replaceAll( "[^\\d]", "" );
-					}
-					long quantityStopInputentero= Long.parseLong(quantityStopInput);
-					quantityStopInput=Long.toString(quantityStopInputentero);
-					
-					String priceStopInput=app.input("1").get();
-					if (priceStopInput.contains("."))
-					{
-						priceStopInput=priceStopInput.substring(0, priceStopInput.indexOf("."));
-					}
-					if (priceStopInput.contains(","))
-					{
-						priceStopInput=priceStopInput.replaceAll( "[^\\d]", "" );
-					}
-					BigDecimal priceStopInputentero= new BigDecimal(new Float(priceStopInput));
-					priceStopInput=priceStopInputentero.toString();
-					
-					 String quantityLimitInput=app.input("4").get();
-						if (quantityLimitInput.contains("."))
-						{
-							quantityLimitInput=quantityLimitInput.substring(0, quantityLimitInput.indexOf("."));
-						}
-						if (quantityLimitInput.contains(","))
-						{
-							quantityLimitInput=quantityLimitInput.replaceAll( "[^\\d]", "" );
-						}
-						long quantityLimitInputentero= Long.parseLong(quantityLimitInput);
-						quantityLimitInput=Long.toString(quantityLimitInputentero);
-						
-						String priceLimitInput=app.input("3").get();
-						if (priceLimitInput.contains("."))
-						{
-							priceLimitInput=priceLimitInput.substring(0, priceLimitInput.indexOf("."));
-						}
-						if (priceLimitInput.contains(","))
-						{
-							priceLimitInput=priceLimitInput.replaceAll( "[^\\d]", "" );
-						}
-						BigDecimal priceLimitInputentero= new BigDecimal(new Float(priceLimitInput));
-						priceLimitInput=priceLimitInputentero.toString();
-					
+				 
+				 String quantityStopInput=new ValueRetriever().getStopQtyInputOCO(app);
+				 String priceStopInput= new ValueRetriever().getStopPriceInputOCO(app);
+				 String quantityLimitInput= new ValueRetriever().getLimitQtyInputOCO(app);
+				 String priceLimitInput= new ValueRetriever().getLimitPriceInputOCO(app);
+				 
 					if (quantityOCO.equals(quantityStopInput) && stop.equals(priceStopInput) && quantityOCO.equals(quantityLimitInput)&& limit.equals(priceLimitInput))
 					{
 						return "Pass";
 					}
 					else
 					{
-						return "OCO order was not edited correctly";
+						return "Stop & Limit of the OCO Order was not saved correctly";
 					}
 			}
 			
