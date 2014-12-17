@@ -84,9 +84,9 @@ public class ValueRetriever {
 	
 	//get limit price in Stop&Limit of Closing Order
 	public String getLimitPrice(Application app){
-		String limitprice=app.label("#19").get();
+		String limitprice=app.label("#15").get();
 	
-		int num=19;
+		int num=15;
 		do{
 			limitprice=app.label("#"+num).get();
 			while(limitprice==null)
@@ -117,7 +117,7 @@ public class ValueRetriever {
 	
 	//get stop quantity value in Stop&Limit of Closing Order
 	public String getStopQuantityInput(Application app){
-		String stopquantity=app.input("#2").get("value");
+		String stopquantity=app.input("#2").get("value", new Mods.Builder().thinktime(5000).build());
 		
 		long stopquantityentero= Long.parseLong(stopquantity);
 		stopquantity=Long.toString(stopquantityentero-2);
@@ -570,5 +570,70 @@ public class ValueRetriever {
 			priceLimitInput=priceLimitInputentero.toString();
 			return priceLimitInput;
 		}
+		
+		
+		//Get Stop Quantity Input in Stop&Limit of Order
+				public String getStopQtyInputOrder(Application app){
+					String quantityStopInput=app.input("2").get(new Mods.Builder().thinktime(5000).build());
+					if (quantityStopInput.contains("."))
+					{
+						quantityStopInput=quantityStopInput.substring(0, quantityStopInput.indexOf("."));
+					}
+					if (quantityStopInput.contains(","))
+					{
+						quantityStopInput=quantityStopInput.replaceAll( "[^\\d]", "" );
+					}
+					long quantityStopInputentero= Long.parseLong(quantityStopInput);
+					quantityStopInput=Long.toString(quantityStopInputentero);
+					return quantityStopInput;
+				}
+				
+				//Get Stop Price Input in Stop&Limit of OCO Order
+				public String getStopPriceInputOrder(Application app){
+					String priceStopInput=app.input("1").get();
+					if (priceStopInput.contains("."))
+					{
+						priceStopInput=priceStopInput.substring(0, priceStopInput.indexOf("."));
+					}
+					if (priceStopInput.contains(","))
+					{
+						priceStopInput=priceStopInput.replaceAll( "[^\\d]", "" );
+					}
+					BigDecimal priceStopInputentero= new BigDecimal(new Float(priceStopInput));
+					priceStopInput=priceStopInputentero.toString();
+					return priceStopInput;
+				}
+				
+				//Get Limit Quantity Input in Stop&Limit of OCO Order
+				public String getLimitQtyInputOrder(Application app){
+					String quantityLimitInput=app.input("4").get();
+					if (quantityLimitInput.contains("."))
+					{
+						quantityLimitInput=quantityLimitInput.substring(0, quantityLimitInput.indexOf("."));
+					}
+					if (quantityLimitInput.contains(","))
+					{
+						quantityLimitInput=quantityLimitInput.replaceAll( "[^\\d]", "" );
+					}
+					long quantityLimitInputentero= Long.parseLong(quantityLimitInput);
+					quantityLimitInput=Long.toString(quantityLimitInputentero);
+					return quantityLimitInput;
+				}
+				
+				//Get Limit Price Input in Stop&Limit of OCO Order
+				public String getLimitPriceInputOrder(Application app){
+					String priceLimitInput=app.input("3").get();
+					if (priceLimitInput.contains("."))
+					{
+						priceLimitInput=priceLimitInput.substring(0, priceLimitInput.indexOf("."));
+					}
+					if (priceLimitInput.contains(","))
+					{
+						priceLimitInput=priceLimitInput.replaceAll( "[^\\d]", "" );
+					}
+					BigDecimal priceLimitInputentero= new BigDecimal(new Float(priceLimitInput));
+					priceLimitInput=priceLimitInputentero.toString();
+					return priceLimitInput;
+				}
 
 }

@@ -26,6 +26,8 @@ import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import common.TestObs;
+
 import email.SendEmail;
 import reports.Reporte;
 //import testlink.CreateBuild;
@@ -36,10 +38,12 @@ public class Main{
 	public static void main(String[] args) throws SAXException, ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException, DRException {
 		
 		   try {
-			 
+			   TestObs te = new TestObs();
+			   Thread thread = new Thread(te);
+			    thread.start();
 			//new CreateBuild();
 			//CreateBuild.createBuild("Automation 4");
-			URL url = new URL("http://localhost:8085/CityIndexSuite?suite&format=xml");
+			URL url = new URL("http://localhost:8085/CityIndexSuite.OrderSuite?suite&format=xml");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Accept", "application/json");
